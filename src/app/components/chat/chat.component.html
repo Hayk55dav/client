@@ -1,0 +1,92 @@
+
+<h1 class="page-header">Welcome to chat!</h1>
+<div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">My chat groups</div>
+          <div class="list-group">
+            <p style="cursor: pointer" (click)="getGroupChats(room.roomId)"
+               class="list-group-item list-group-item-action"
+               *ngFor="let room of userChatGroup">
+                <span *ngFor="let roomName of room.roomName">{{roomName + '  '}}</span>
+                <span *ngIf="room.noReadMessage !== 0 ">
+                  <span style="background: red; float: right; padding: 2px 5px;
+                  color: aliceblue; font-size: 10px; border-radius: 50%;" >
+                    +{{ room.noReadMessage }}
+                  </span>
+                </span>
+              </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="panel panel-primary" style="height: 500px;">
+          <div class="panel-heading">Chat Window
+              <button *ngIf="id !== null" class="btn btn-primary" style="font-size: 12px; margin-left: 10px;"
+              (click)="add()">Add user</button>
+            <!-- Div to Add users -->
+            <div [ngClass]="{'addUser': addclass, 'none': !addclass }" class="list-group" (mouseleave)= "closeAddUser()">
+              <a style="color: black; cursor: pointer; padding: 5px;"
+                 class="list-group-item" *ngFor="let user of addUsers"
+                  (click)="addUserToChat(user)"
+              >
+                {{user}}
+              </a>
+
+            </div>
+
+            <button *ngIf="id !== null" class="btn btn-primary" style="font-size: 12px; margin-left: 10px;"
+            >New Chat</button>
+            <input type="search" id="inputSearch" (keyup)="addSearched()"  class="btn-primary" style="padding: 5px;
+            border-radius: 10px; border: none; outline: none; text-align: center;
+            margin-left: 5px;" [(ngModel)]="search" placeholder="Search" >
+            <span *ngIf="maxNum > 0">
+              <button  class="btn btn-primary" style="padding: 7px" (click)="scroolUp()">+</button>
+              <button class="btn btn-primary" style="padding: 7px" (click)="scroolDown()">-</button>
+            </span>
+          </div>
+          <div class="panel-body" id="autoscroll" style="height: 361px;" >
+               <div *ngFor="let chat of chats | searchfilter: 'message' : search">
+               <div id="{{chat.searchId}}"
+                    class="{{chat.messageClass}} {{chat.searched}}"
+
+                    >
+                   <p><strong>{{chat.username}}: </strong>{{chat.message}}</p>
+                 <img *ngIf="chat.img != ''" src="{{chat.img}}" style="width: 100%">
+                   <p style="font-size: 10px;"><strong>Date: </strong>{{chat.updated_at | date:'yyyy-MM-dd HH:mm:ss'}}</p>
+                 </div>
+               </div>
+            <div *ngIf="kayup.success && username !== kayup.username" class="usersMsg"><p><strong>{{kayup.username}} writes ....</strong></p></div>
+          </div>
+          <div class="panel-footer">
+            <form [formGroup]="form"  id='sendForm' (submit)="sendMessage(id)" >
+              <div class="row">
+                <div class="col-md-10">
+                  <textarea (keyup)="keyUp()" id="textarea"
+                            (keydown)="enter($event)"
+                            name="" [(ngModel)]="result" formControlName="message"
+                            cols="50" rows="3" class="form-control"></textarea>
+                </div>
+                <div class="col-md-2">
+                  <input [disabled]="!form.valid" id="send"   type="submit"  class="btn btn-success" style="margin-top: 20px;" value="Send">
+                  <input type="file" (change)="eventFile($event)" #eventFileClick style="display: none;">
+                  <button type="button" class="btn btn-dark" (click)="eventFileClick.click()">IMG</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-default" style="height: 500px">
+          <div class="panel-heading">All Users</div>
+          <div class="list-group panel-body" style="height: 455px; padding: 0">
+            <p  (click)="addChat(user.username)" style="cursor: pointer"  class="list-group-item list-group-item-action"  *ngFor="let user of users">{{user.username}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+

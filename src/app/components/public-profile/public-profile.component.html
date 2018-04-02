@@ -1,0 +1,14 @@
+<h1 *ngIf="foundProfile" class="page-header">Welcome to page {{ username }}</h1>
+
+
+<div class="show-hide-message" *ngIf="message">
+  <div [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</div>
+<br>
+
+<ul *ngIf="foundProfile" class="list-group">
+  <li class="list-group-item"><strong>Username: </strong>{{ username }}</li>
+  <li class="list-group-item"><strong>Email:</strong> {{ email }}</li>
+</ul>

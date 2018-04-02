@@ -1,0 +1,56 @@
+.myMsg {
+    border-radius: 10px;
+    background-color: lightskyblue;
+    padding: 10px 10px 0 10px;
+    width: 400px;
+    margin-bottom: 10px;
+    float: right;
+}
+.panel-body{
+    overflow: auto;
+    overflow-x: hidden;
+}
+.usersMsg {
+    border-radius: 10px;
+    background-color: lavender;
+    padding: 10px 10px 0 10px;
+    width: 400px;
+    float: left;
+    margin-bottom: 10px;
+}
+.connected {
+    border-radius: 10px;
+    background-color: aliceblue;
+    padding: 10px 10px 0 10px;
+    width: 300px;
+    float: left;
+    margin-left: 90px;
+    margin-bottom: 10px;
+}
+.connected p {
+    text-align: center;
+}
+    .addUser {
+        display: block;
+    position: absolute;
+        overflow: auto;
+
+    overflow-x: hidden;
+    width: 200px;
+    max-height: 200px;
+    z-index: 3;
+    border: 2px solid blue;
+    left: 128px;
+    background-color: #f8f9fa;
+
+}
+    .none{
+        display: none;
+    }
+
+    .searched {
+        background-color: red;
+    }
+    .ornage {
+        background-color: orange;
+    }

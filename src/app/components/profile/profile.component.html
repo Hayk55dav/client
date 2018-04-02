@@ -1,0 +1,37 @@
+<script src="../../../../../routes/auth.js"></script><h1 class="page-header">Welcome {{ username }}</h1>
+<ul class="list-group">
+  <li class="list-group-item"><strong>Username: </strong>{{ username }}</li>
+  <li class="list-group-item"><strong>Email:</strong> {{ email }}</li>
+</ul>
+
+<!--
+<input type="file" name="fileUpload" id="fileUpload"
+multiple ng2FileSelect [uploader]="uploader">
+<div class="row uploadList" *ngFor="let item of uploader.queue">
+    <div class="col-md-4">{{item.file.name}}</div>
+    <div class="col-md-4">
+      <div class="progress">
+          <div class="progress-bar bg-success" [ngStyle]="{'width':item.progress+'%'}"></div>
+      </div>
+    </div>
+    <div class="col-md-4">
+        <button class="btn btn-dark" (click)="item.upload()">Upload</button>
+        <button class="btn btn-danger" (click)="item.remove()">Cancel</button>
+    </div>
+</div>
+<div class="row" *ngIf="uploader?.queue?.length > 0">
+  <button (click)="uploader.uploadAll()" class="btn btn-primary">Upload All</button>
+</div>
+
+<div class="row card">
+    <div class="row" *ngFor="let item of attachmentList">
+      <div class="col-md-7">{{item.originalname}}</div>
+      <div class="col-md-5" ><button class="btn btn-primary">Download</button></div>
+    </div>
+</div>
+-->
+<input type="file" (change)="fileChangeEvent($event)">
+<button type="button" (click)="upload()">Upload</button>
+
+<img src="{{imgPath}}" style="width: 100%; height: 100%; max-width: 500px; " alt="{{imgPath}}">
+
